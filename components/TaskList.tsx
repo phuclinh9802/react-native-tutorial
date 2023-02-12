@@ -4,7 +4,7 @@ import ITodo from '../models/todo.model';
 import TaskItem from './TaskItem';
 
 interface ITodoListProps {
-  data: ITodo[]
+  data: ITodo[];
 }
 
 const TaskList = (props: ITodoListProps) => {
