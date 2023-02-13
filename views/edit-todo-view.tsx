@@ -1,5 +1,13 @@
 import React, {useState} from 'react';
-import {Modal, StyleSheet, Text, View, TextInput, TouchableOpacity, KeyboardAvoidingView} from 'react-native';
+import {
+  Modal,
+  StyleSheet,
+  Text,
+  View,
+  TextInput,
+  TouchableOpacity,
+  KeyboardAvoidingView,
+} from 'react-native';
 import ITodo from '../models/todo.model';
 
 interface IEditTodoProps {
@@ -33,7 +41,7 @@ const EditTodoView = (props: IEditTodoProps) => {
         text,
         done: false,
         color: colors[colorIndex],
-      }
+      };
       props.onSave(newData);
     }
   };
@@ -57,7 +65,7 @@ const EditTodoView = (props: IEditTodoProps) => {
           />
 
           <Text style={styles.label}>ToDo Color:</Text>
-          <View style={styles.colors} >
+          <View style={styles.colors}>
             <View
               style={[
                 styles.color,
@@ -97,7 +105,7 @@ const EditTodoView = (props: IEditTodoProps) => {
                 },
               ]}>
               <TouchableOpacity
-                style={{height: '100%', width:'100%'}}
+                style={{height: '100%', width: '100%'}}
                 onPress={() => setColorIndex(2)}
               />
             </View>

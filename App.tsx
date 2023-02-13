@@ -1,32 +1,55 @@
-/**
- *  Landing page - iOS Todo List App
- */
+import React, {useState} from 'react';
+import {StyleSheet, Text, SafeAreaView} from 'react-native';
+import Menu from './components/Menu';
+import TodoList from './components/TaskList';
+import ITodo from './models/todo.model';
+import EditTodoView from './views/edit-todo-view';
 
-import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+export default function App() {
+  const [data, setData] = useState<ITodo[]>([]);
+  const [isEditTodoVisible, setIsEditTodoVisible] = useState(false);
 
-function App(): JSX.Element {
+  const onAddTodo = () => {
+    setIsEditTodoVisible(true);
+  };
+
+  const onCloseEditTodo = () => {
+    setIsEditTodoVisible(false);
+  };
+
+  const onSaveTodo = (data: ITodo) => {
+    setData(d => [...d, data]);
+    setIsEditTodoVisible(false);
+  };
+
   return (
-    <View style={styles.container}>
-      <Text style={styles.heading}>To-do List</Text>
-    </View>
+    <SafeAreaView style={styles.container}>
+      <Text style={styles.title}>ToDo</Text>
+      <TodoList data={data} />
+      <Menu onAddTodo={onAddTodo} />
+
+      <EditTodoView
+        // isVisible={isEditTodoVisible}
+        onClose={onCloseEditTodo}
+        onSave={onSaveTodo}
+        isVisible={true}
+      />
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#1E1A3C',
-    padding: 10,
+    display: 'flex',
+    flexDirection: 'column',
+    backgroundColor: '#fff',
+    height: '100%',
+    width: '100%',
   },
-  heading: {
-    color: '#fff',
+  title: {
     fontSize: 24,
-    fontWeight: '600',
-    marginTop: 30,
-    marginBottom: 10,
-    marginLeft: 20,
+    fontWeight: 'bold',
+    padding: 20,
+    paddingBottom: 0,
   },
 });
-
-export default App;
